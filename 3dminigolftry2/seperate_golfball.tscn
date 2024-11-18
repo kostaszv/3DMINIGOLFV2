@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgy7ekj7b3h0c"]
+
+[ext_resource type="PackedScene" uid="uid://dgs0wfmnsy78a" path="res://golfball.tscn" id="2_ofnb2"]
+
+[sub_resource type="GDScript" id="GDScript_pxncp"]
+script/source = "extends RigidBody3D
+
+# Variables for mouse control and movement
+var mouse_sensitivity := 0.001 
+var twist_input := 0.0
+var pitch_input := 0.0
+
+# Define nodes for tracking
+@onready var position_tracker := get_node(\"../PositionTracker\")  # New node to follow the ball's position without rotation
+@onready var twist_pivot := $TwistPivot
+@onready var pitch_pivot := $TwistPivot/PitchPivot
+@onready var golfball = get_node(\"../Golfball\")  # Reference to the golfball node
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+# Use _physics_process for applying forces, as it runs in sync with the physics engine
+func _physics_process(delta: float) -> void:
+	# Handle player movement
+	var input = Vector3.ZERO
+	input.x = Input.get_axis(\"move_left\", \"move_right\")
+	input.z = Input.get_axis(\"move_forward\", \"move_back\")
+	
+	# Apply force based on the input vector
+	apply_central_force(twist_pivot.basis * input * 1600.0 * delta)
+	
+	# Update PositionTracker to follow Golfball's position without affecting rotation
+	if golfball:
+		position_tracker.translation = golfball.global_transform.origin
+	else:
+		print(\"Golfball node is not assigned correctly.\")
+
+# Handle input for camera rotation
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file(\"res://main_menu.tscn\")
+	
+	# Move the TwistPivot to the PositionTracker's position (only position, not rotation)
+	twist_pivot.translation = position_tracker.translation
+	
+	# Apply camera rotation based on mouse input
+	twist_pivot.rotate_y(twist_input)
+	pitch_pivot.rotate_x(pitch_input)
+	
+	# Clamp the pitch rotation to limit how far up or down the camera can look
+	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5)
+	
+	# Reset inputs for smooth camera movement
+	twist_input = 0.0
+	pitch_input = 0.0
+
+# Capture mouse movement and apply it to camera rotation
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			twist_input = -event.relative.x * mouse_sensitivity
+			pitch_input = -event.relative.y * mouse_sensitivity
+"
+
+[node name="Seperate golfball" type="Node3D"]
+
+[node name="Golfball" parent="." instance=ExtResource("2_ofnb2")]
+script = SubResource("GDScript_pxncp")
+
+[node name="PositionTracker" type="Node3D" parent="."]

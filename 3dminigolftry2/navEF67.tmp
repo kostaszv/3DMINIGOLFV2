@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://6fqd6a60rbx7"]
+
+[ext_resource type="Material" uid="uid://dm4rfr1m5v1gi" path="res://Textures/GRASS.tres" id="1_rkpw0"]
+[ext_resource type="PackedScene" uid="uid://b38il4gaxkdje" path="res://MAPMAKER.tscn" id="2_bi2dw"]
+[ext_resource type="PackedScene" uid="uid://chb5ci30buws2" path="res://player.tscn" id="3_aqo2b"]
+[ext_resource type="PackedScene" uid="uid://ibb6qccsafpc" path="res://Ball.tscn" id="4_kbses"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f78ue"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5cwjg"]
+sky_material = SubResource("ProceduralSkyMaterial_f78ue")
+
+[sub_resource type="Environment" id="Environment_fkumf"]
+background_mode = 2
+sky = SubResource("Sky_5cwjg")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gq82t"]
+
+[node name="NavigationRegion" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53759, -9.52183, -1.46722)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, -15.0369, 19.9041, 0.0171828)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fkumf")
+
+[node name="Start" type="CSGBox3D" parent="."]
+transform = Transform3D(0.990268, 0, -0.139173, 0, 1, 0, 0.139173, 0, 0.990268, -34.277, 17.1, 3.835)
+use_collision = true
+size = Vector3(50, 1, 50)
+material = ExtResource("1_rkpw0")
+
+[node name="Path3D" parent="." instance=ExtResource("2_bi2dw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.303573, 11.3965, 1.72622)
+
+[node name="PLAYER" parent="." instance=ExtResource("3_aqo2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7401, 19.6632, 0)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_gq82t")
+angular_damp = 2.0
+
+[node name="Ball" parent="PLAYER" instance=ExtResource("4_kbses")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.1942, 10.6475, -2.79131)
+top_level = true
+mass = 0.068
+
+[node name="Force" type="ProgressBar" parent="PLAYER"]
+offset_left = 472.0
+offset_top = 3.0
+offset_right = 740.0
+offset_bottom = 30.0
+
+[node name="Direction" type="ProgressBar" parent="PLAYER"]
+offset_left = 482.0
+offset_top = 618.0
+offset_right = 748.0
+offset_bottom = 645.0

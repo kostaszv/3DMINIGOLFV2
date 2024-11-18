@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddgn0jlvbx7s5"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_0voyk"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_lgs3h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wst6u"]
+
+[node name="AIM" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.899365, 0, 0, 0, 0.825688, 0, 0, 0, 0.125907, 0, 2.73057, 0)
+material_override = SubResource("ORMMaterial3D_0voyk")
+mesh = SubResource("PrismMesh_lgs3h")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.125, 0, 0, 0, 2, 0, 0, 0, 0.075, 0, 1.37125, 0)
+mesh = SubResource("BoxMesh_wst6u")

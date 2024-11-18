@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dm4rfr1m5v1gi"]
+
+[ext_resource type="Texture2D" uid="uid://bcuius04mgb41" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_Color.jpg" id="1_wopry"]
+[ext_resource type="Texture2D" uid="uid://c4tf04a1krkjv" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_AmbientOcclusion.jpg" id="2_mcjfj"]
+[ext_resource type="Texture2D" uid="uid://crhvck7u1w5aq" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_NormalDX.jpg" id="3_ib4iy"]
+[ext_resource type="Texture2D" uid="uid://bka8bcb6huakl" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_Roughness.jpg" id="4_e3o0u"]
+
+[resource]
+albedo_texture = ExtResource("1_wopry")
+metallic_specular = 0.1
+roughness = 0.5
+roughness_texture = ExtResource("4_e3o0u")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_ib4iy")
+ao_enabled = true
+ao_texture = ExtResource("2_mcjfj")
+uv1_scale = Vector3(5, 5, 5)

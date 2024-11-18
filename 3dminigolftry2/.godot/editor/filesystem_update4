@@ -1,0 +1,16 @@
+res://SKY.tscn
+res://Textures/GRASS.tres
+res://player.tscn
+res://MAPMAKER.tscn
+res://main_menu.tscn
+res://Textures/ui.tscn
+res://navigation_region.tscn
+res://seperate_golfball.tscn
+res://golfball.tscn
+res://Ball.tscn
+res://Golfball.tscn
+res://player.gd
+res://aim.gd
+res://ball.gd
+res://navigatecam.gd
+res://AIM3.tscn

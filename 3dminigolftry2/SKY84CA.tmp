@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://4gcryldmmieq"]
+
+[ext_resource type="Texture2D" uid="uid://r8c8i0gmvcc3" path="res://Textures/SKY/autumn_field_puresky_2k.hdr" id="1_i60g2"]
+[ext_resource type="PackedScene" uid="uid://6fqd6a60rbx7" path="res://navigation_region.tscn" id="2_6mosi"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_51lrq"]
+panorama = ExtResource("1_i60g2")
+energy_multiplier = 0.4
+
+[sub_resource type="Sky" id="Sky_qwo65"]
+sky_material = SubResource("PanoramaSkyMaterial_51lrq")
+
+[sub_resource type="Environment" id="Environment_e17sd"]
+background_mode = 2
+sky = SubResource("Sky_qwo65")
+
+[node name="SKY" type="WorldEnvironment"]
+environment = SubResource("Environment_e17sd")
+
+[node name="NavigationRegion" parent="." instance=ExtResource("2_6mosi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53759, 6.06438, 2.47216)
+metadata/_edit_lock_ = true

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvrxvp0fvsy3x"]
+
+[ext_resource type="Texture2D" uid="uid://b8ngktuw8a2mm" path="res://Textures/uibackgroubnds/BACKGROUND.png" id="1_mbhj4"]
+
+[node name="UI" type="NinePatchRect"]
+modulate = Color(0.366595, 0.366595, 0.366595, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mbhj4")
+region_rect = Rect2(37.5, 31, 581, 259)

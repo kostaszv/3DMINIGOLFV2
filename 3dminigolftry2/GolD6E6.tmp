@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://w0p4oss1j18c"]
+
+[ext_resource type="Texture2D" uid="uid://cgyq863oykrlp" path="res://Textures/golfball/vecteezy_honeycomb-shape-white-background-polygon-white-background_7680355-1.jpg" id="1_j6bts"]
+[ext_resource type="Script" path="res://golfball.gd" id="1_rxo4j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_880lk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tht7"]
+diffuse_mode = 1
+disable_fog = true
+albedo_texture = ExtResource("1_j6bts")
+albedo_texture_force_srgb = true
+metallic = 0.72
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6efqb"]
+material = SubResource("StandardMaterial3D_3tht7")
+
+[node name="Golfball" type="RigidBody3D"]
+script = ExtResource("1_rxo4j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_880lk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00577807, 0.0154358, -0.0926898)
+mesh = SubResource("SphereMesh_6efqb")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+transform = Transform3D(0.999391, -0.00785068, 0.034005, 0, 0.97437, 0.224951, -0.0348995, -0.224814, 0.973777, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 2)

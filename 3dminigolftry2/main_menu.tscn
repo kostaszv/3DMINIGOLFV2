@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds7y2t18e7xuq"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_3a361"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucoqg"]
+bg_color = Color(0, 0.343028, 0.64329, 1)
+border_width_left = 2
+border_width_bottom = 4
+border_color = Color(0, 0.29616, 0.57311, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 6
+shadow_size = 1
+
+[sub_resource type="Theme" id="Theme_8vsds"]
+Button/styles/normal = SubResource("StyleBoxFlat_ucoqg")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3a361")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+clip_children = 1
+layout_mode = 2
+theme = SubResource("Theme_8vsds")
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

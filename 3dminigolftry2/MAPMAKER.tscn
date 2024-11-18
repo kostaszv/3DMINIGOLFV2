@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://b38il4gaxkdje"]
+
+[ext_resource type="Texture2D" uid="uid://bcuius04mgb41" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_Color.jpg" id="2_kredu"]
+[ext_resource type="Texture2D" uid="uid://c4tf04a1krkjv" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_AmbientOcclusion.jpg" id="3_bojeg"]
+[ext_resource type="Texture2D" uid="uid://crhvck7u1w5aq" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_NormalDX.jpg" id="4_fuqlj"]
+[ext_resource type="Texture2D" uid="uid://bka8bcb6huakl" path="res://Textures/Grass001_2K-JPG/Grass001_2K-JPG_Roughness.jpg" id="5_5f18k"]
+
+[sub_resource type="Curve3D" id="Curve3D_5uh7l"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -4.15573, 2.62702, -5.05557, 0, 0, 0, 0, 0, 0, 34.7344, -8.31565, 0.841013, 0, 0, 0, 0, 0, 0, 52.3161, -15.5802, 7.55903, 0, 0, 0, 0, 0, 0, 63.7269, -25.6258, 11.0771, 0, 0, 0, 0, 0, 0, 76.8626, -31.9682, 15.9517, 0, 0, 0, 0, 0, 0, 90.9335, -33.1214, 22.0644, 0, 0, 0, 0, 0, 0, 109.062, -36.9653, 29.5675, 0, 0, 0, 0, 0, 0, 218.303, -57.9165, 64.9091, -1.4538, -4.51891, 0.970451, 1.4538, 4.51891, -0.970451, 270.207, -74.8939, 124.504, 0, 0, 0, 0, 0, 0, 315.169, -73.9928, 219.329),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4a0kp"]
+albedo_texture = ExtResource("2_kredu")
+metallic_specular = 0.02
+metallic_texture_channel = 1
+roughness = 0.25
+roughness_texture = ExtResource("5_5f18k")
+normal_enabled = true
+normal_scale = 0.31
+normal_texture = ExtResource("4_fuqlj")
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("3_bojeg")
+ao_texture_channel = 1
+uv1_scale = Vector3(-6, -6, -6)
+texture_filter = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g511x"]
+albedo_color = Color(0.212305, 0.212305, 0.212305, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8216o"]
+albedo_color = Color(0.10748, 0.10748, 0.10748, 1)
+
+[node name="Path3D" type="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00226164, -1.12123, 1.05128)
+curve = SubResource("Curve3D_5uh7l")
+
+[node name="ROAD" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766953, 0.746216, -0.130198)
+use_collision = true
+flip_faces = true
+polygon = PackedVector2Array(0, 1, 0, 1, 10, 1, 1, 1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_4a0kp")
+
+[node name="bump left" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.770701, 0.719323, -0.184307)
+use_collision = true
+polygon = PackedVector2Array(0, 1, 0, 2, 0.7, 2, 2, 1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_g511x")
+
+[node name="bump right" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766953, 0.746216, -0.130198)
+use_collision = true
+polygon = PackedVector2Array(13.137, 0.914, 10, 1, 12, 2, 13, 2)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_8216o")
