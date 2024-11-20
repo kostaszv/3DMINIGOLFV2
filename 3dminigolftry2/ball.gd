@@ -9,7 +9,13 @@ func _getVector2()->Vector2:
 func _shoot(force,delta,input)->void:
 	input.x = force
 	apply_central_force(twist_pivot.basis* input * 45.0*delta)
-	
+func stoped() -> bool:
+	var last_pos = position
+	var new_pos = position
+	if last_pos == new_pos:
+		return true
+	else:
+		return false
 	
 @onready  var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
@@ -22,6 +28,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var input := Vector3.ZERO
+	if stoped:
+		rotation.x=0
+		rotation.z=0
+		rotation.y=0
+	
 	#input.x = Input.get_axis("move_back","move_forward")
 	#input.z= Input.get_axis("move_left","move_right")
 	

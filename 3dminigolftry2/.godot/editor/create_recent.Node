@@ -1,6 +1,7 @@
+CollisionShape3D
+CSGPolygon3D
 MeshInstance3D
 CSGMesh3D
-CollisionShape3D
 Marker3D
 CenterContainer
 Control
@@ -11,4 +12,3 @@ Node3D
 Camera3D
 NinePatchRect
 Button
-VBoxContainer

@@ -18,13 +18,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("force"):
-		print("pressed")
 		AIM.visible = true
 		pressed = true 
 		time +=delta
 		_calc_force(time)
 		progress_bar.value = force
-		print(time,"pressed")
 		
 	if pressed:
 		AIM.visible = true
@@ -35,7 +33,6 @@ func _process(delta: float) -> void:
 			
 	if Input.is_action_just_released("force") and pressed == true :
 		pressed = false
-		print(time,"release")
 		time = 0 
 		_calc_force(time)
 		progress_bar.value = force
